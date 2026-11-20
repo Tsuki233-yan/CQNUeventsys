@@ -1,0 +1,32 @@
+@startuml
+participant ActivityStatusScheduler as Scheduler
+participant ActivityStatusService as StatusSvc
+participant ActivityStartReminderService as ReminderSvc
+participant ActivityService as ActivitySvc
+database SQLite as DB
+
+Scheduler -> StatusSvc: checkAndUpdateAllActivities()
+StatusSvc -> ActivitySvc: list() 查询所有活动
+ActivitySvc -> DB: SELECT activities
+DB --> ActivitySvc: 活动列表
+ActivitySvc --> StatusSvc: List<Activity>
+
+loop 每个活动
+    StatusSvc -> StatusSvc: getExpectedStatus()
+    StatusSvc -> StatusSvc: 计算当前应有状态
+    
+    alt 状态需要更新
+        StatusSvc -> ActivitySvc: updateById()
+        ActivitySvc -> DB: UPDATE status
+        DB --> ActivitySvc: 成功
+    end
+end
+
+Scheduler -> ReminderSvc: sendCalendarDayReminders()
+ReminderSvc -> ActivitySvc: 查询即将开始的活动
+ActivitySvc -> DB: 查询活动
+DB --> ActivitySvc: 活动列表
+ReminderSvc -> ReminderSvc: 发送提醒通知
+
+StatusSvc --> Scheduler: 更新完成
+@enduml

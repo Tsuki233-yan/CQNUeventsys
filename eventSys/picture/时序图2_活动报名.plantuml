@@ -1,0 +1,51 @@
+@startuml
+actor 用户 as User
+participant 前端 as Frontend
+participant ActivityParticipantController as Controller
+participant UserService as UserSvc
+participant ActivityService as ActivitySvc
+participant ActivityPermissionService as PermissionSvc
+participant ActivityResultService as ResultSvc
+database SQLite as DB
+
+User -> Frontend: 点击报名
+Frontend -> Controller: POST /activities/participant/join/{activityId}
+Controller -> UserSvc: getByUsername()
+UserSvc -> DB: 查询当前用户
+DB --> UserSvc: 用户信息
+UserSvc --> Controller: User
+
+Controller -> ActivitySvc: getById(activityId)
+ActivitySvc -> DB: 查询活动
+DB --> ActivitySvc: 活动数据
+ActivitySvc --> Controller: Activity
+
+Controller -> PermissionSvc: getUserRole()
+PermissionSvc -> DB: 查询报名记录
+DB --> PermissionSvc: 记录/null
+PermissionSvc --> Controller: 角色信息
+
+alt 未报名
+  opt 上传报名图片
+    loop 每张图片
+      Controller -> ResultSvc: saveImage()
+      ResultSvc -> DB: 写入文件系统
+      DB --> ResultSvc: 文件路径
+      ResultSvc --> Controller: URL路径
+    end
+  end
+  Controller -> PermissionSvc: addParticipantWithImages()
+  PermissionSvc -> DB: 插入报名记录
+  DB --> PermissionSvc: 成功
+  PermissionSvc --> Controller: 成功
+  Controller -> ActivitySvc: updateById() 更新报名人数
+  ActivitySvc -> DB: UPDATE current_participants
+  Controller -> UserSvc: updateById() 更新参与统计
+  UserSvc -> DB: UPDATE participated_count
+  Controller --> Frontend: 报名成功
+  Frontend --> User: 显示成功
+else 已报名
+  Controller --> Frontend: 错误：已报名
+  Frontend --> User: 提示错误
+end
+@enduml

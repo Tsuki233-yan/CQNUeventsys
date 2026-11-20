@@ -1,0 +1,33 @@
+@startuml
+left to right direction
+
+skinparam actor {
+    BackgroundColor<<user>> LightGreen
+}
+
+actor "普通用户" as User <<user>>
+
+rectangle "个人中心模块" {
+    package "个人信息管理" {
+        usecase "查看个人信息" as UC45
+        usecase "编辑个人信息" as UC46
+        usecase "上传头像" as UC47
+    }
+    
+    package "我的活动数据" {
+        usecase "查看我创建的活动" as UC48
+        usecase "查看我参与的活动" as UC49
+        usecase "查看我的收藏" as UC50
+        usecase "查看我的签到记录" as UC51
+    }
+}
+
+User --> UC45
+User --> UC46
+User --> UC47
+User --> UC48
+User --> UC49
+User --> UC50
+User --> UC51
+
+@enduml

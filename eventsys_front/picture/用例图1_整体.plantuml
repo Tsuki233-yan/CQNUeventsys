@@ -1,0 +1,62 @@
+@startuml
+left to right direction
+
+skinparam actor {
+    BackgroundColor<<guest>> LightBlue
+    BackgroundColor<<user>> LightGreen
+    BackgroundColor<<organizer>> LightYellow
+    BackgroundColor<<admin>> LightCoral
+}
+
+actor "游客" as Guest <<guest>>
+actor "普通用户" as User <<user>>
+actor "活动组织者" as Organizer <<organizer>>
+actor "管理员" as Admin <<admin>>
+
+rectangle "校园活动综合管理系统" {
+    usecase "认证管理" as UC_Auth
+    usecase "活动浏览" as UC_Browse
+    usecase "活动参与" as UC_Participate
+    usecase "活动组织" as UC_Organize
+    usecase "成果展示" as UC_Achievement
+    usecase "消息通知" as UC_Notification
+    usecase "个人中心" as UC_Profile
+    usecase "用户管理" as UC_AdminUser
+    usecase "活动审核" as UC_AdminActivity
+    usecase "分类管理" as UC_AdminCategory
+    usecase "活动评价" as UC_Review
+}
+
+Guest --> UC_Auth
+Guest --> UC_Browse
+
+User --> UC_Participate
+User --> UC_Profile
+
+Organizer --> UC_Organize
+Organizer --> UC_Achievement
+
+Guest --> UC_Achievement
+
+User --> UC_Achievement
+User --> UC_Notification
+User --> UC_Review
+
+Organizer --> UC_Participate
+Organizer --> UC_Review
+
+Admin --> UC_AdminUser
+Admin --> UC_AdminActivity
+Admin --> UC_AdminCategory
+Admin --> UC_Notification
+Admin --> UC_Review
+
+User --|> Guest
+Organizer --|> User
+
+note right of Organizer
+  普通用户创建活动后
+  自动成为活动组织者
+end note
+
+@enduml

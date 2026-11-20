@@ -1,0 +1,54 @@
+@startuml
+left to right direction
+
+skinparam actor {
+    BackgroundColor<<organizer>> LightYellow
+}
+
+actor "活动组织者" as Organizer <<organizer>>
+
+rectangle "活动组织模块" {
+    package "活动管理" {
+        usecase "创建活动" as UC16
+        usecase "修改活动" as UC17
+        usecase "删除活动" as UC18
+        usecase "查看我创建的活动" as UC19
+        usecase "开始活动" as UC26
+        usecase "上传活动封面" as UC27
+    }
+    
+    package "参与者管理" {
+        usecase "管理报名人员" as UC20
+        usecase "查看签到列表" as UC21
+        usecase "移除报名人员" as UC28
+    }
+    
+    package "组织者管理" {
+        usecase "添加活动组织者" as UC29
+        usecase "移除活动组织者" as UC30
+    }
+}
+
+Organizer --> UC16
+Organizer --> UC17
+Organizer --> UC18
+Organizer --> UC19
+Organizer --> UC20
+Organizer --> UC21
+Organizer --> UC26
+Organizer --> UC27
+Organizer --> UC28
+Organizer --> UC29
+Organizer --> UC30
+
+note right of UC16
+  创建后状态为"待审核"
+  需管理员审核通过
+end note
+
+note right of UC29
+  活动创建者可添加其他用户
+  作为共同组织者协助管理
+end note
+
+@enduml

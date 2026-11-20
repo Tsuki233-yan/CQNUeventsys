@@ -1,0 +1,19 @@
+@startchen
+
+skinparam linetype polyline
+skinparam ranksep 150
+
+entity 活动分类 {
+  id <<key>>
+  name
+  description
+  icon
+  sort_order
+  status
+  activity_count
+  create_time
+  update_time
+  deleted
+}
+
+@endchen

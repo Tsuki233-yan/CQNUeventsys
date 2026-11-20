@@ -1,0 +1,36 @@
+@startuml
+actor 管理员 as Admin
+participant 前端 as Frontend
+participant AdminActivityController as Controller
+participant ActivityService as ActivitySvc
+participant UserService as UserSvc
+participant NotificationService as NotifSvc
+database SQLite as DB
+
+Admin -> Frontend: 查看待审核列表
+Frontend -> Controller: GET /admin/activities/pending
+Controller -> ActivitySvc: page(status=1)
+ActivitySvc -> DB: SELECT status=1
+DB --> ActivitySvc: 活动列表
+ActivitySvc --> Controller: Page<Activity>
+Controller --> Frontend: 返回数据
+Frontend --> Admin: 显示列表
+
+Admin -> Frontend: 点击通过
+Frontend -> Controller: POST /admin/activities/approve/{id}
+Controller -> ActivitySvc: getById()
+ActivitySvc -> DB: 查询活动
+DB --> ActivitySvc: 活动数据
+ActivitySvc --> Controller: Activity
+Controller -> UserSvc: getByUsername() 获取管理员
+UserSvc -> DB: 查询用户
+DB --> UserSvc: 管理员数据
+UserSvc --> Controller: User
+Controller -> ActivitySvc: updateById() 状态设为2
+ActivitySvc -> DB: UPDATE status=2
+DB --> ActivitySvc: 成功
+Controller -> NotifSvc: sendAuditResult() 通知组织者
+NotifSvc -> DB: INSERT notification
+Controller --> Frontend: 审核通过
+Frontend --> Admin: 显示成功
+@enduml

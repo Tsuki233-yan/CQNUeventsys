@@ -1,0 +1,26 @@
+@startuml
+participant 前端 as Frontend
+participant JwtAuthenticationFilter as Filter
+participant JwtUtil as JWT
+participant CustomUserDetailsService as UserDetailsSvc
+participant SecurityContext as Context
+participant Controller as Controller
+
+Frontend -> Filter: 请求(携带Token)
+Filter -> Filter: getJwtFromRequest() 提取Token
+
+alt Token存在且有效
+    Filter -> JWT: validateToken()
+    JWT --> Filter: 验证通过
+    Filter -> JWT: getUsernameFromToken()
+    JWT --> Filter: username
+    Filter -> UserDetailsSvc: loadUserByUsername()
+    UserDetailsSvc --> Filter: UserDetails
+    Filter -> Context: setAuthentication()
+    Filter -> Controller: filterChain.doFilter() 放行请求
+    Controller --> Frontend: 业务响应
+else Token无效或不存在
+    Filter -> Controller: filterChain.doFilter() 放行(公开接口或401)
+    Controller --> Frontend: 业务响应或401
+end
+@enduml

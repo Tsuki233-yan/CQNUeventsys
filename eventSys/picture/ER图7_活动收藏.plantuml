@@ -1,0 +1,13 @@
+@startchen
+
+skinparam linetype polyline
+
+entity 活动收藏 {
+  id <<key>>
+  activity_id
+  user_id
+  create_time
+  deleted
+}
+
+@endchen

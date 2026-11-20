@@ -1,0 +1,19 @@
+@startchen
+
+skinparam linetype polyline
+skinparam ranksep 200
+
+entity 签到记录 {
+  id <<key>>
+  activity_id
+  user_id
+  registration_id
+  check_in_time
+  check_in_type
+  location
+  remark
+  create_time
+  deleted
+}
+
+@endchen

@@ -1,0 +1,56 @@
+@startuml
+left to right direction
+
+skinparam actor {
+    BackgroundColor<<guest>> LightBlue
+    BackgroundColor<<user>> LightGreen
+    BackgroundColor<<organizer>> LightYellow
+}
+
+actor "游客" as Guest <<guest>>
+actor "普通用户" as User <<user>>
+actor "活动组织者" as Organizer <<organizer>>
+
+rectangle "成果展示模块" {
+    package "成果浏览" {
+        usecase "查看成果展示列表" as UC52
+        usecase "查看成果展示详情" as UC53
+        usecase "浏览成果评论" as UC54
+    }
+    
+    package "成果评论" {
+        usecase "发表评论" as UC55
+        usecase "回复评论" as UC56
+        usecase "删除我的评论" as UC57
+    }
+    
+    package "成果管理" {
+        usecase "创建成果展示贴" as UC58
+        usecase "编辑成果展示贴" as UC59
+        usecase "删除成果展示贴" as UC60
+        usecase "上传图片" as UC61
+    }
+}
+
+Guest --> UC52
+Guest --> UC53
+Guest --> UC54
+
+User --> UC55
+User --> UC56
+User --> UC57
+
+Organizer --> UC58
+Organizer --> UC59
+Organizer --> UC60
+Organizer --> UC61
+
+User --|> Guest
+Organizer --|> User
+
+note right of UC58
+  支持Markdown格式
+  可上传多张图片
+end note
+
+@enduml

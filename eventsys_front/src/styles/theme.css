@@ -1,0 +1,186 @@
+/* =========================================================
+   校园活动平台 · 统一主题变量体系
+   ---------------------------------------------------------
+   主色采用红色系 #A61E2B（可替换为校 VI 色值：
+   仅需修改 --color-primary 及下方 --el-color-primary 系列
+   衍生色，全站与 Element Plus 组件将自动跟随）。
+   约定：
+   1. 页面样式一律引用本文件变量，禁止硬编码十六进制色值；
+   2. 圆角体系：小元素 8px / 常规控件 10px / 卡片面板 12px；
+   3. 阴影分 sm/md/lg 三级，主题色阴影单独一层。
+   ========================================================= */
+
+:root {
+  /* ---------- 1. 品牌主色（红色系，可替换为校 VI 色值） ---------- */
+  --color-primary: #A61E2B;        /* 主色 */
+  --color-primary-light: #C1626B;  /* 主色-浅（hover 弱化、辅助装饰） */
+  --color-primary-dark: #851822;   /* 主色-深（按下、强调文字） */
+  --primary-bg: #F6E8EA;           /* 主色浅底（选中态、高亮行背景） */
+  --primary-bg-hover: #EDD2D5;     /* 主色浅底-悬停 */
+  --primary-gradient: linear-gradient(135deg, #8C1622 0%, #A61E2B 55%, #C1626B 100%); /* 品牌渐变（登录/首页横幅） */
+
+  /* ---------- 2. 语义色（成功 / 警告 / 危险 / 信息） ---------- */
+  --color-success: #67C23A;
+  --color-success-dark: #529B2E;
+  --color-success-bg: #F0F9EB;
+  --color-warning: #E6A23C;
+  --color-warning-dark: #B88230;
+  --color-warning-bg: #FDF6EC;
+  --color-danger: #F56C6C;
+  --color-danger-dark: #C45656;
+  --color-danger-bg: #FEF0F0;
+  --color-info: #909399;
+  --color-info-dark: #73767A;
+  --color-info-bg: #F4F4F5;
+
+  /* ---------- 3. 文字颜色 ---------- */
+  --text-primary: #1F2937;   /* 标题、正文主色 */
+  --text-regular: #4B5563;   /* 常规正文 */
+  --text-secondary: #6B7280; /* 次要说明 */
+  --text-muted: #9CA3AF;     /* 弱化提示 */
+
+  /* ---------- 4. 背景与边框 ---------- */
+  --bg-primary: #FFFFFF;     /* 卡片、面板底色 */
+  --bg-secondary: #F8FAFC;   /* 页面浅灰底（布局背景） */
+  --bg-hover: #F3F4F6;       /* 悬停灰底 */
+  --border-color: #E5E7EB;       /* 常规边框 */
+  --border-color-light: #F3F4F6; /* 分割线 */
+  --shadow-color: rgba(166, 30, 43, 0.12); /* 主题色投影基色 */
+
+  /* ---------- 5. 圆角体系（8~12px） ---------- */
+  --radius-sm: 8px;   /* 小元素：徽标、内层块 */
+  --radius-md: 10px;  /* 常规控件：按钮、输入框 */
+  --radius-lg: 12px;  /* 卡片、面板、弹层 */
+
+  /* ---------- 6. 阴影层级 ---------- */
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.08);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 12px 32px rgba(15, 23, 42, 0.14);
+  --shadow-primary: 0 4px 14px rgba(166, 30, 43, 0.28); /* 主题色投影（激活菜单、主按钮悬浮） */
+
+  /* ---------- 7. 字体规范 ---------- */
+  --font-family: 'PingFang SC', 'Microsoft YaHei', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 22px;
+
+  /* ---------- 8. 旧变量别名（兼容存量页面，勿新增引用） ---------- */
+  --primary-color: var(--color-primary);
+  --primary-light: var(--color-primary-light);
+  --primary-dark: var(--color-primary-dark);
+  --secondary-color: var(--color-primary-dark);
+
+  /* =========================================================
+     Element Plus CSS 变量映射（让全部组件跟随主题）
+     注意：light-3/5/7/8/9 与 dark-2 是构建期静态值，
+     必须成组覆盖，否则衍生色仍是默认蓝色。
+     ========================================================= */
+  /* 主色及其衍生 */
+  --el-color-primary: var(--color-primary);
+  --el-color-primary-light-3: var(--color-primary-light);   /* 70%主色+30%白 */
+  --el-color-primary-light-5: #D38F95;
+  --el-color-primary-light-7: #E4BBBF;
+  --el-color-primary-light-8: var(--primary-bg-hover);
+  --el-color-primary-light-9: var(--primary-bg);
+  --el-color-primary-dark-2: var(--color-primary-dark);
+
+  /* 语义色及其衍生（沿用 Element Plus 官方梯度） */
+  --el-color-success: var(--color-success);
+  --el-color-success-light-3: #95D475;
+  --el-color-success-light-5: #B3E19D;
+  --el-color-success-light-7: #D1EDC4;
+  --el-color-success-light-8: #E1F3D8;
+  --el-color-success-light-9: var(--color-success-bg);
+  --el-color-success-dark-2: var(--color-success-dark);
+
+  --el-color-warning: var(--color-warning);
+  --el-color-warning-light-3: #EEBE77;
+  --el-color-warning-light-5: #F3D19E;
+  --el-color-warning-light-7: #F8E3C5;
+  --el-color-warning-light-8: #FAECD8;
+  --el-color-warning-light-9: var(--color-warning-bg);
+  --el-color-warning-dark-2: var(--color-warning-dark);
+
+  --el-color-danger: var(--color-danger);
+  --el-color-error: var(--color-danger);
+  --el-color-danger-light-3: #F89898;
+  --el-color-danger-light-5: #FAB6B6;
+  --el-color-danger-light-7: #FDCDCD;
+  --el-color-danger-light-8: #FDE2E2;
+  --el-color-danger-light-9: var(--color-danger-bg);
+  --el-color-danger-dark-2: var(--color-danger-dark);
+  --el-color-error-light-3: #F89898;
+  --el-color-error-light-5: #FAB6B6;
+  --el-color-error-light-7: #FDCDCD;
+  --el-color-error-light-8: #FDE2E2;
+  --el-color-error-light-9: var(--color-danger-bg);
+  --el-color-error-dark-2: var(--color-danger-dark);
+
+  --el-color-info: var(--color-info);
+  --el-color-info-light-3: #B1B3B8;
+  --el-color-info-light-5: #C8C9CC;
+  --el-color-info-light-7: #DEDFE0;
+  --el-color-info-light-8: #E9E9EB;
+  --el-color-info-light-9: var(--color-info-bg);
+  --el-color-info-dark-2: var(--color-info-dark);
+
+  /* 文字、边框、填充 */
+  --el-text-color-primary: var(--text-primary);
+  --el-text-color-regular: var(--text-regular);
+  --el-text-color-secondary: var(--text-secondary);
+  --el-text-color-placeholder: var(--text-muted);
+  --el-border-color: var(--border-color);
+  --el-border-color-light: var(--border-color);
+  --el-border-color-lighter: var(--border-color-light);
+  --el-border-color-extra-light: var(--border-color-light);
+  --el-fill-color-light: var(--bg-secondary);
+  --el-fill-color-lighter: var(--bg-hover);
+  --el-fill-color-blank: var(--bg-primary);
+
+  /* 圆角与阴影 */
+  --el-border-radius-base: var(--radius-md);
+  --el-border-radius-small: var(--radius-sm);
+  --el-card-border-radius: var(--radius-lg);
+  --el-box-shadow: var(--shadow-md);
+  --el-box-shadow-light: var(--shadow-sm);
+  --el-box-shadow-dark: var(--shadow-lg);
+
+  /* 字体 */
+  --el-font-family: var(--font-family);
+}
+
+/* =========================================================
+   组件级微调（仅做变量覆盖不到的部分，页面禁止再硬编码颜色）
+   ========================================================= */
+
+/* 卡片边框统一走主题边框色，悬停由各页面用阴影变量控制 */
+.el-card {
+  --el-card-border-color: var(--border-color);
+}
+
+/* 弹层（下拉/气泡/对话框）统一圆角 */
+.el-popper {
+  border-radius: var(--radius-md);
+}
+
+/* 对话框圆角与标题颜色 */
+.el-dialog {
+  border-radius: var(--radius-lg);
+}
+
+.el-dialog__title {
+  color: var(--text-primary);
+}
+
+/* 消息提示圆角跟随主题 */
+.el-message {
+  border-radius: var(--radius-md);
+}
+
+/* 分页器（背景模式下选中页自动使用 --el-color-primary，此处仅统一悬停底色） */
+.el-pagination.is-background .el-pager li:hover {
+  color: var(--color-primary);
+}

@@ -1,0 +1,21 @@
+@startchen
+
+skinparam linetype polyline
+skinparam ranksep 300
+
+entity 用户 {
+  id <<key>>
+  username
+  nickname
+  real_name
+  student_id
+  college
+  major
+  role
+  status
+  organized_count
+  participated_count
+  create_time
+}
+
+@endchen

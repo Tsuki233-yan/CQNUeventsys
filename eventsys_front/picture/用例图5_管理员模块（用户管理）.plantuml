@@ -1,0 +1,41 @@
+
+@startuml
+left to right direction
+
+skinparam actor {
+    BackgroundColor<<admin>> LightCoral
+}
+
+actor "管理员" as Admin <<admin>>
+
+rectangle "用户管理模块" {
+    package "用户查询" {
+        usecase "查看用户列表" as UC27
+        usecase "查看用户详情" as UC28
+    }
+    
+    package "用户维护" {
+        usecase "修改用户信息" as UC29
+        usecase "重置用户密码" as UC30
+        usecase "删除用户" as UC31
+        usecase "封禁用户" as UC40
+        usecase "解封用户" as UC41
+    }
+    
+    package "权限管理" {
+        usecase "设置管理员" as UC32
+        usecase "取消管理员" as UC33
+    }
+}
+
+Admin --> UC27
+Admin --> UC28
+Admin --> UC29
+Admin --> UC30
+Admin --> UC31
+Admin --> UC40
+Admin --> UC41
+Admin --> UC32
+Admin --> UC33
+
+@enduml

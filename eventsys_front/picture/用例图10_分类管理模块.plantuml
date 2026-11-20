@@ -1,0 +1,32 @@
+@startuml
+left to right direction
+
+skinparam actor {
+    BackgroundColor<<user>> LightGreen
+    BackgroundColor<<admin>> LightCoral
+}
+
+actor "普通用户" as User <<user>>
+actor "管理员" as Admin <<admin>>
+
+rectangle "分类管理模块" {
+    package "分类查询" {
+        usecase "查看分类列表" as UC70
+    }
+    
+    package "分类维护" {
+        usecase "新建分类" as UC71
+        usecase "编辑分类" as UC72
+        usecase "删除分类" as UC73
+        usecase "启用/禁用分类" as UC74
+    }
+}
+
+User --> UC70
+Admin --> UC70
+Admin --> UC71
+Admin --> UC72
+Admin --> UC73
+Admin --> UC74
+
+@enduml

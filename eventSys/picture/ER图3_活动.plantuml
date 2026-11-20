@@ -1,0 +1,33 @@
+@startchen
+
+skinparam linetype polyline
+skinparam ranksep 300
+
+entity 活动 {
+  id <<key>>
+  title
+  description
+  cover_image
+  organizer_id
+  location
+  start_time
+  end_time
+  registration_start_time
+  registration_end_time
+  max_participants
+  current_participants
+  tags
+  status
+  category_id
+  need_review
+  view_count
+  favorite_count
+  comment_count
+  avg_rating
+  review_count
+  create_time
+  update_time
+  deleted
+}
+
+@endchen

@@ -1,0 +1,18 @@
+@startchen
+
+skinparam linetype polyline
+skinparam ranksep 200
+
+entity 活动评价 {
+  id <<key>>
+  activity_id
+  user_id
+  rating
+  content
+  reply
+  create_time
+  update_time
+  deleted
+}
+
+@endchen

@@ -1,0 +1,9 @@
+所有已有用户的默认密码：test
+
+Swagger UI 可视化界面
+http://localhost:8080/api/swagger-ui.html
+OpenAPI JSON 数据
+http://localhost:8080/api/v3/api-docs
+
+后端api
+http://localhost:8080/api/

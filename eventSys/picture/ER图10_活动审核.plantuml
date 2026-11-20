@@ -1,0 +1,21 @@
+@startchen
+
+skinparam linetype polyline
+skinparam ranksep 200
+
+entity 活动审核 {
+  id <<key>>
+  activity_id
+  audit_type
+  status
+  submitter_id
+  submit_time
+  auditor_id
+  audit_time
+  audit_opinion
+  create_time
+  update_time
+  deleted
+}
+
+@endchen

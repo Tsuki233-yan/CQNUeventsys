@@ -1,0 +1,61 @@
+@startuml
+left to right direction
+
+skinparam actor {
+    BackgroundColor<<guest>> LightBlue
+    BackgroundColor<<user>> LightGreen
+    BackgroundColor<<organizer>> LightYellow
+    BackgroundColor<<admin>> LightCoral
+}
+
+actor "游客" as Guest <<guest>>
+actor "普通用户" as User <<user>>
+actor "活动组织者" as Organizer <<organizer>>
+actor "管理员" as Admin <<admin>>
+
+rectangle "活动评价模块" {
+    package "评价提交" {
+        usecase "提交活动评价" as UC76
+    }
+    
+    package "评价查看" {
+        usecase "查看活动评价列表" as UC77
+        usecase "查看我的评价" as UC78
+        usecase "查看评价统计" as UC79
+    }
+    
+    package "评价管理" {
+        usecase "回复评价" as UC80
+        usecase "删除评价" as UC81
+    }
+}
+
+Guest --> UC77
+
+User --> UC76
+User --> UC77
+User --> UC78
+
+Organizer --> UC77
+Organizer --> UC79
+Organizer --> UC80
+
+Admin --> UC77
+Admin --> UC79
+Admin --> UC81
+
+User --|> Guest
+Organizer --|> User
+
+note right of UC76
+  仅活动状态为"已结束"
+  且已签到成功的参与者可评价
+  每个活动仅限评价一次
+end note
+
+note right of UC80
+  仅活动创建者可回复
+  自己活动下的评价
+end note
+
+@enduml

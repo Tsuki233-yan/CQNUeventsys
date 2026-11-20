@@ -1,0 +1,19 @@
+@startchen
+
+skinparam linetype polyline
+skinparam ranksep 200
+
+entity 评论 {
+  id <<key>>
+  target_id
+  target_type
+  user_id
+  content
+  parent_id
+  reply_to_user_id
+  create_time
+  update_time
+  deleted
+}
+
+@endchen

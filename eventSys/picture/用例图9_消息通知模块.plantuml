@@ -1,0 +1,40 @@
+@startuml
+left to right direction
+
+skinparam actor {
+    BackgroundColor<<user>> LightGreen
+    BackgroundColor<<admin>> LightCoral
+}
+
+actor "普通用户" as User <<user>>
+actor "管理员" as Admin <<admin>>
+
+rectangle "消息通知模块" {
+    package "通知查看" {
+        usecase "查看通知列表" as UC62
+        usecase "标记通知已读" as UC63
+        usecase "标记全部已读" as UC75
+        usecase "删除通知" as UC64
+        usecase "查看未读数量" as UC65
+    }
+    
+    package "公告管理" {
+        usecase "发送系统公告" as UC66
+        usecase "编辑公告" as UC67
+        usecase "撤回公告" as UC68
+        usecase "查看公告列表" as UC69
+    }
+}
+
+User --> UC62
+User --> UC63
+User --> UC75
+User --> UC64
+User --> UC65
+
+Admin --> UC66
+Admin --> UC67
+Admin --> UC68
+Admin --> UC69
+
+@enduml

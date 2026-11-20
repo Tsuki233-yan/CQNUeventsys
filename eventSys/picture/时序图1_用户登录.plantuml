@@ -1,0 +1,27 @@
+@startuml
+actor 用户 as User
+participant 前端 as Frontend
+participant AuthController as Controller
+participant AuthenticationManager as AuthManager
+participant CustomUserDetailsService as UserDetailsSvc
+participant JwtUtil as JWT
+participant UserService as Service
+database SQLite as DB
+
+User -> Frontend: 输入用户名密码
+Frontend -> Controller: POST /auth/login
+Controller -> AuthManager: authenticate()
+AuthManager -> UserDetailsSvc: loadUserByUsername()
+UserDetailsSvc -> DB: 查询用户
+DB --> UserDetailsSvc: 用户信息
+UserDetailsSvc --> AuthManager: UserDetails
+AuthManager --> Controller: 认证成功
+Controller -> JWT: generateToken()
+JWT --> Controller: Token
+Controller -> Service: getByUsername()
+Service -> DB: 查询用户详情
+DB --> Service: 用户数据
+Service --> Controller: User
+Controller --> Frontend: {token, user}
+Frontend --> User: 登录成功
+@enduml

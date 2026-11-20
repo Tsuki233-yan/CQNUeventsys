@@ -1,0 +1,30 @@
+# === Maven / Java (backend) ===
+eventSys/target/
+eventSys/*.db
+
+# === Node / Vue (frontend) ===
+eventsys_front/node_modules/
+eventsys_front/dist/
+eventsys_front/dist-ssr/
+eventsys_front/*.local
+
+# === Logs ===
+eventSys/logs/
+eventsys_front/logs/
+*.log
+
+# === Runtime data ===
+eventSys/uploads/images/
+
+# === IDE / Editor ===
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# === OS ===
+.DS_Store
+Thumbs.db

@@ -1,0 +1,75 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: event-sys
+  
+  datasource:
+    driver-class-name: org.sqlite.JDBC
+    url: jdbc:sqlite:${user.dir}/event_database.db
+    # SQLite不需要用户名密码
+    username:
+    password:
+  
+  sql:
+    init:
+      mode: never  # 使用自定义的DatabaseInitializer进行初始化，不使用Spring Boot默认的初始化
+  
+  # 文件上传配置
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 20MB
+  
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: UTC
+    serialization:
+      write-dates-as-timestamps: false
+
+# MyBatis Plus 配置
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  type-aliases-package: com.campus.eventsys.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      # SQLite 不支持 getGeneratedKeys，使用 INPUT 模式避免自动生成主键
+      id-type: input
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+# JWT 配置
+jwt:
+  secret: campusEventSystemSecretKey2024ForJwtTokenGeneration
+  expiration: 86400000  # 24小时，单位毫秒
+
+# SpringDoc OpenAPI 配置
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  show-actuator: false
+
+# 文件上传配置
+file:
+  upload:
+    path: uploads/images
+  access:
+    url: /images/
+
+# 日志配置
+logging:
+  level:
+    com.campus.eventsys: debug
+    org.springframework.security: debug

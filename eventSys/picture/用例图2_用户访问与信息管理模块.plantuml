@@ -1,0 +1,47 @@
+@startuml
+left to right direction
+
+skinparam actor {
+    BackgroundColor<<guest>> LightBlue
+    BackgroundColor<<user>> LightGreen
+}
+
+actor "游客" as Guest <<guest>>
+actor "普通用户" as User <<user>>
+
+rectangle "用户访问与信息浏览模块" {
+    package "认证管理" {
+        usecase "用户注册" as UC1
+        usecase "用户登录" as UC2
+        usecase "退出登录" as UC3
+    }
+    
+    package "活动浏览" {
+        usecase "浏览活动列表" as UC4
+        usecase "查看活动详情" as UC5
+        usecase "搜索活动" as UC6
+        usecase "按分类筛选活动" as UC7
+        usecase "查看成果展示贴" as UC8
+        usecase "查看评论" as UC9
+    }
+}
+
+Guest --> UC1
+Guest --> UC2
+Guest --> UC4
+Guest --> UC5
+Guest --> UC6
+Guest --> UC7
+Guest --> UC8
+
+User --> UC3
+User --> UC4
+User --> UC5
+User --> UC6
+User --> UC7
+User --> UC8
+User --> UC9
+
+User --|> Guest
+
+@enduml

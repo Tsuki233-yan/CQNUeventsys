@@ -1,0 +1,39 @@
+@startuml
+left to right direction
+
+skinparam actor {
+    BackgroundColor<<user>> LightGreen
+}
+
+actor "普通用户" as User <<user>>
+
+rectangle "活动参与模块" {
+    package "报名与签到" {
+        usecase "报名活动" as UC9
+        usecase "取消报名" as UC10
+        usecase "活动签到" as UC11
+    }
+    
+    package "收藏管理" {
+        usecase "收藏活动" as UC12
+        usecase "取消收藏" as UC13
+    }
+    
+    package "评论互动" {
+        usecase "发表评论" as UC14
+        usecase "回复评论" as UC15
+        usecase "删除我的评论" as UC44
+    }
+    
+}
+
+User --> UC9
+User --> UC10
+User --> UC11
+User --> UC12
+User --> UC13
+User --> UC14
+User --> UC15
+User --> UC44
+
+@enduml

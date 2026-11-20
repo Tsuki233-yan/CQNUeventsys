@@ -1,0 +1,26 @@
+@startchen
+
+skinparam linetype polyline
+skinparam ranksep 200
+
+entity 系统通知 {
+  id <<key>>
+  user_id
+  title
+  content
+  type
+  activity_id
+  is_read
+  read_time
+  publish_scope
+  is_pinned
+  publish_time
+  status
+  created_by
+  announce_category
+  create_time
+  update_time
+  deleted
+}
+
+@endchen

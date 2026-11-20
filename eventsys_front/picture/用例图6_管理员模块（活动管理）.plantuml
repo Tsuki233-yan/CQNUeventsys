@@ -1,0 +1,48 @@
+@startuml
+left to right direction
+
+skinparam actor {
+    BackgroundColor<<admin>> LightCoral
+}
+
+actor "管理员" as Admin <<admin>>
+
+rectangle "活动管理模块" {
+    package "活动查询" {
+        usecase "查看待审核活动" as UC34
+        usecase "查看所有活动" as UC35
+        usecase "查看活动详情" as UC42
+    }
+    
+    package "审核操作" {
+        usecase "审核通过活动" as UC36
+        usecase "拒绝活动" as UC37
+    }
+    
+    package "活动管控" {
+        usecase "强制下架活动" as UC38
+        usecase "删除活动" as UC39
+        usecase "批量刷新活动状态" as UC40
+    }
+}
+
+Admin --> UC34
+Admin --> UC35
+Admin --> UC42
+Admin --> UC36
+Admin --> UC37
+Admin --> UC38
+Admin --> UC39
+Admin --> UC40
+
+note right of UC36
+  审核通过后活动状态
+  变为"报名中"
+end note
+
+note right of UC40
+  自动根据时间更新状态：
+  报名中→即将开始→进行中→已结束
+end note
+
+@enduml
